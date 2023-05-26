@@ -1,21 +1,23 @@
-import React from "react"
+import React, {useState} from "react"
 const Name = () => {
-    const [badgeArray, setbadgeArray] = React.useState([])
+    const [badgeArray, setbadgeArray] = useState([])
     
     // const badgeElements = badgeArray.map((name, i) => <p key={i}>{name}</p>)
     const badgeElements = badgeArray.map((badge, i) => {
         const a = badge.phone
         const phoneFormat = `(${a[0]}${a[1]}${a[2]}) ${a[3]}${a[4]}${a[5]}- ${a[6]}${a[7]}${a[8]}${a[9]}`
         // if (typeof name === 'string') return (<p key={i}>{name}</p>)
-        if (typeof badge === 'object') return (<div key={i}>
-            <label><h1>{badge.firstName}'s Badge:</h1></label>
-            <p>Name: {badge.firstName + ' ' + badge.lastName}</p>
-            <p>Email: {badge.email}</p>
-            <p>Phone#: {phoneFormat}</p>
-            <p>Place of Birth: {badge.placeOfBirth}</p>
-            <p>Favorite Food: {badge.food}</p>
-            <p>About You: {badge.comments}</p>
-            </div>)
+        if (typeof badge === 'object') 
+            return (
+                <div key={i}>
+                    <label><h1>{badge.firstName}'s Badge:</h1></label>
+                    <p>Name: {badge.firstName + ' ' + badge.lastName}</p>
+                    <p>Email: {badge.email}</p>
+                    <p>Phone#: {phoneFormat}</p>
+                    <p>Place of Birth: {badge.placeOfBirth}</p>
+                    <p>Favorite Food: {badge.food}</p>
+                    <p>About You: {badge.comments}</p>
+                </div>)
     })
     
     const intState = {
@@ -28,7 +30,7 @@ const Name = () => {
         comments: ""
     }
 
-    const [formData, setFormData] = React.useState(intState)
+    const [formData, setFormData] = useState(intState)
 
     const handleChange = (event) => {
         const {name, value, type} = event.target
@@ -49,7 +51,7 @@ const Name = () => {
 
     const SubmitButton = () => {
         if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.placeOfBirth || !formData.food || !formData.comments) {
-            return <button className="form--submit-disabled"disabled>Submit</button>
+            return <button className="form--submit-disabled" disabled>Submit</button>
         } else {
             return <button className="form--submit">Submit</button>
         }
